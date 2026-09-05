@@ -1,0 +1,24 @@
+# System Configuration
+system:
+  app_name: "AI-Freelance-Hunter"
+  version: "1.0.0"
+  log_level: "INFO"
+  
+  paths:
+    data_dir: "data"
+    logs_dir: "logs"
+    opportunities_file: "data/opportunities.jsonl"
+    seen_urls_file: "data/seen_urls.json"
+    fingerprints_file: "data/fingerprints.json"
+    notifications_file: "data/notifications.json"
+    sources_file: "data/sources.json"
+    crawl_state_file: "data/crawl_state.json"
+    recovery_state_file: "data/recovery_state.json"
+    source_health_file: "data/source_health.json"
+    runs_dir: "data/runs"
+
+  network:
+    timeout_seconds: 20
+    max_retries: 3
+    backoff_factor: 2.0
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 AI-Opportunity-Hunter/1.0"

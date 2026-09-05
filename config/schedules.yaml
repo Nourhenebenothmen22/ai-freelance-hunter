@@ -1,0 +1,10 @@
+# Schedules and Execution Frequencies
+schedules:
+  crawl_interval_minutes: 2
+  jitter_seconds: 15
+  realtime_mode: true
+  recovery_on_startup: true
+  downtime_threshold_minutes: 15
+  max_missed_window_hours: 72
+  source_cooldown_minutes: 10
+  healthcheck_interval_minutes: 60

@@ -1,0 +1,227 @@
+# Data Sources Configuration
+sources:
+  - source: "remoteok"
+    name: "RemoteOK API"
+    url: "https://remoteok.com/api"
+    type: "json_api"
+    enabled: true
+    priority: 1
+    adapter: "api_adapter"
+    search_strategy: "feed_filter"
+    rate_limit:
+      requests_per_minute: 20
+      delay_between_requests_seconds: 3
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "weworkremotely_dev"
+    name: "WeWorkRemotely - Programming"
+    url: "https://weworkremotely.com/categories/remote-programming-jobs.rss"
+    type: "rss"
+    enabled: true
+    priority: 1
+    adapter: "rss_adapter"
+    search_strategy: "feed_filter"
+    rate_limit:
+      requests_per_minute: 20
+      delay_between_requests_seconds: 3
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "jobspresso"
+    name: "Jobspresso Remote"
+    url: "https://jobspresso.co/category/remote-software-jobs/feed/"
+    type: "rss"
+    enabled: true
+    priority: 2
+    adapter: "rss_adapter"
+    search_strategy: "feed_filter"
+    rate_limit:
+      requests_per_minute: 15
+      delay_between_requests_seconds: 4
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "remotive"
+    name: "Remotive Public API"
+    url: "https://remotive.com/api/remote-jobs"
+    type: "json_api"
+    enabled: true
+    priority: 1
+    adapter: "api_adapter"
+    search_strategy: "category_query"
+    rate_limit:
+      requests_per_minute: 15
+      delay_between_requests_seconds: 4
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "arbeitnow"
+    name: "Arbeitnow Open Jobs API"
+    url: "https://www.arbeitnow.com/api/job-board-api"
+    type: "json_api"
+    enabled: true
+    priority: 2
+    adapter: "api_adapter"
+    search_strategy: "paginated_api"
+    rate_limit:
+      requests_per_minute: 20
+      delay_between_requests_seconds: 3
+    pagination:
+      supported: true
+      max_pages: 3
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "hacker_news_jobs"
+    name: "Hacker News Freelance & Jobs Feed"
+    url: "https://hnrss.org/jobs"
+    type: "rss"
+    enabled: true
+    priority: 2
+    adapter: "rss_adapter"
+    search_strategy: "feed_filter"
+    rate_limit:
+      requests_per_minute: 30
+      delay_between_requests_seconds: 2
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "facebook_freelance_tn"
+    name: "Facebook Freelance IT Tunisie"
+    url: "https://www.facebook.com/groups/freelance.tunisie.it/"
+    group_name: "Freelance Tunisie"
+    type: "facebook_group"
+    enabled: true
+    priority: 1
+    adapter: "facebook_adapter"
+    search_strategy: "group_posts"
+    rate_limit:
+      requests_per_minute: 10
+      delay_between_requests_seconds: 5
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "facebook_dev_tn"
+    name: "Facebook Développeurs Web & Mobile Tunisie"
+    url: "https://www.facebook.com/groups/developpeurs.tunisie/"
+    group_name: "Développeurs Tunisie"
+    type: "facebook_group"
+    enabled: true
+    priority: 1
+    adapter: "facebook_adapter"
+    search_strategy: "group_posts"
+    rate_limit:
+      requests_per_minute: 10
+      delay_between_requests_seconds: 5
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "jobicy_remote"
+    name: "Jobicy International Remote API"
+    url: "https://jobicy.com/api/v2/remote-jobs?count=25"
+    type: "json_api"
+    enabled: true
+    priority: 1
+    adapter: "api_adapter"
+    search_strategy: "feed_filter"
+    rate_limit:
+      requests_per_minute: 20
+      delay_between_requests_seconds: 3
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "web_search_hunter"
+    name: "Dynamic Live Web Search (Tunisia & Worldwide)"
+    url: "https://news.google.com/rss"
+    type: "web_search"
+    enabled: true
+    priority: 1
+    adapter: "web_search_adapter"
+    search_strategy: "dynamic_web_query"
+    queries:
+      - "freelance developpeur react tunisie"
+      - "recrutement developpeur web junior tunisie"
+      - "stage pfe developpeur full stack tunisie"
+      - "junior full stack developer remote freelance"
+      - "junior ai agent engineer remote"
+      - "remote junior react python developer"
+      - "junior pl/sql developer remote"
+      - "sql developer junior remote freelance"
+      - "pl/sql engineer remote freelance"
+      - "junior python data engineer remote"
+      - "python data analyst junior remote"
+      - "developpeur pl/sql oracle tunisie"
+      - "data engineer python sql junior freelance"
+    rate_limit:
+
+      requests_per_minute: 15
+      delay_between_requests_seconds: 4
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+discovery_seeds:
+  - source: "jobicy"
+    name: "Jobicy Remote API"
+    url: "https://jobicy.com/api/v2/remote-jobs?count=20"
+    type: "json_api"
+    adapter: "api_adapter"
+  - source: "weworkremotely_ai"
+    name: "WeWorkRemotely AI"
+    url: "https://weworkremotely.com/categories/remote-back-end-programming-jobs.rss"
+    type: "rss"
+    adapter: "rss_adapter"
+  - source: "authentic_jobs"
+    name: "Authentic Jobs Feed"
+    url: "https://authenticjobs.com/feed/"
+    type: "rss"
+    adapter: "rss_adapter"
+  - source: "euremotejobs"
+    name: "EU Remote Jobs"
+    url: "https://euremotejobs.com/feed/"
+    type: "rss"
+    adapter: "rss_adapter"
+  - source: "hn_freelance"
+    name: "HackerNews Freelance RSS"
+    url: "https://hnrss.org/whoishiring/freelance"
+    type: "rss"
+    adapter: "rss_adapter"
+
+

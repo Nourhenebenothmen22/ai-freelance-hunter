@@ -1,0 +1,45 @@
+# Scoring Configuration and Weights
+scoring:
+  bonuses:
+    ai: 25
+    web: 20
+    web_and_ai_hybrid: 20
+    python_data: 20
+    sql_plsql: 15
+    junior: 20
+    remote: 15
+    freelance: 15
+    strong_skill_overlap: 15
+    startup_sme: 10
+    realtime_freshness: 15
+
+  penalties:
+    senior_only: -30
+    expert_only: -35
+    onsite_only: -30
+    unrelated: -50
+    r_only_data: -50
+
+  thresholds:
+    excellent_min: 90
+    strong_min: 75
+    relevant_min: 60
+    ignore_below: 60
+
+  categories:
+    excellent:
+      range: [90, 100]
+      label: "Excellent"
+      notify: true
+    strong:
+      range: [75, 89]
+      label: "Strong"
+      notify: true
+    relevant:
+      range: [60, 74]
+      label: "Relevant"
+      notify: false
+    ignore:
+      range: [0, 59]
+      label: "Ignore"
+      notify: false

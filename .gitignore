@@ -1,0 +1,79 @@
+# ====================================================================
+# 🦅 AI-Freelance-Hunter - .gitignore
+# ====================================================================
+
+# 1. Environment Variables & Secrets (CRITICAL FOR GITHUB PUSH)
+.env
+.env.*
+*.env
+!.env.example
+
+# 2. Local Database & Persistent Filesystem Data
+data/*.json
+data/*.jsonl
+data/*.lock
+data/runs/*
+!data/.gitkeep
+!data/runs/.gitkeep
+
+# 3. Application Logs
+logs/*
+!logs/.gitkeep
+
+# 4. Python Bytecode & Runtime Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 5. Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# 6. Testing & Coverage Reports
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+htmlcov/
+
+# 7. IDE & Text Editor Configuration
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# 8. Operating System Junk Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini

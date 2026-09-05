@@ -1,0 +1,36 @@
+# User Target Profile & Preferences
+profile:
+  candidate_status: "Junior / Beginner / Final-year Engineering Student"
+  education: "Software Engineering / Computer Science"
+  experience_years: "0-2"
+  
+  target_opportunity_types:
+    - freelance_projects
+    - remote_freelance
+    - remote_jobs
+    - contract_work
+    - entry_level_jobs
+    - junior_jobs
+    - startup_roles
+    - sme_pme_roles
+    - graduation_projects_pfe
+    - internships
+
+  target_geographies:
+    - worldwide_remote
+    - tunisia
+    - europe
+    - north_america
+
+  languages:
+    - en
+    - fr
+
+  preferred_client_types:
+    - startups
+    - early_stage_startups
+    - saas_startups
+    - ai_startups
+    - small_engineering_teams
+    - software_agencies
+    - smes_pmes

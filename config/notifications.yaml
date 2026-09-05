@@ -1,0 +1,24 @@
+# Notifications Configuration
+notifications:
+  telegram:
+    enabled: true
+    min_score: 75
+    batch_size: 5
+    max_retries: 5
+    retry_delay_seconds: 15
+    rate_limit_seconds: 2
+    template: |
+      🔥 <b>NEW OPPORTUNITY</b>
+
+      <b>{title}</b>
+      {company_str}
+
+      🎯 <b>Score:</b> {score}/100 ({score_category})
+      💼 <b>Type:</b> {contract_type_str}
+      🌍 <b>Location:</b> {location_str}
+      👨💻 <b>Level:</b> {level_str}
+
+      {tech_stack_summary}
+
+      📌 <b>Source:</b> {source}
+      🔗 <a href="{apply_url}">Apply / View Details</a>

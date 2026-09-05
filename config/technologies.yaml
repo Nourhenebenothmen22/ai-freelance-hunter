@@ -1,0 +1,116 @@
+# Technology Matrix and Rules
+technologies:
+  web:
+    primary:
+      - "React"
+      - "Next.js"
+      - "Node.js"
+      - "Express"
+      - "JavaScript"
+      - "TypeScript"
+      - "MERN"
+      - "MongoDB"
+      - "PostgreSQL"
+      - "REST API"
+      - "GraphQL"
+      - "TailwindCSS"
+      - "HTML/CSS"
+    aliases:
+      react: ["react", "react.js", "reactjs"]
+      nextjs: ["next.js", "nextjs", "next"]
+      nodejs: ["node.js", "nodejs", "node"]
+      express: ["express.js", "expressjs", "express"]
+      typescript: ["typescript", "ts"]
+      javascript: ["javascript", "js"]
+      mern: ["mern", "mern stack"]
+      mongodb: ["mongodb", "mongo"]
+      postgresql: ["postgresql", "postgres"]
+
+  ai:
+    primary:
+      - "RAG"
+      - "LLM"
+      - "LangChain"
+      - "LlamaIndex"
+      - "OpenAI"
+      - "Claude"
+      - "Gemini"
+      - "Hugging Face"
+      - "AI Agents"
+      - "Vector DB"
+      - "Pinecone"
+      - "ChromaDB"
+      - "Qdrant"
+      - "Ollama"
+      - "Prompt Engineering"
+      - "Fine-tuning"
+    aliases:
+      rag: ["rag", "retrieval augmented generation", "retrieval-augmented"]
+      llm: ["llm", "large language model", "large language models"]
+      langchain: ["langchain"]
+      llamaindex: ["llamaindex", "llama-index"]
+      ai_agents: ["ai agent", "ai agents", "autonomous agents", "multi-agent"]
+      vectordb: ["chroma", "chromadb", "pinecone", "qdrant", "weaviate", "pgvector"]
+
+  data_python:
+    primary:
+      - "Python"
+      - "Pandas"
+      - "NumPy"
+      - "PySpark"
+      - "Airflow"
+      - "FastAPI"
+      - "Flask"
+      - "SQLAlchemy"
+      - "ETL"
+      - "Data Pipelines"
+    aliases:
+      python: ["python", "python3"]
+      pandas: ["pandas"]
+      pyspark: ["pyspark", "spark"]
+      airflow: ["airflow", "apache airflow"]
+      etl: ["etl", "extract transform load", "data pipeline", "data pipelines"]
+
+  database:
+    primary:
+      - "SQL"
+      - "PL/SQL"
+      - "Oracle"
+      - "PostgreSQL"
+      - "MySQL"
+      - "Stored Procedures"
+      - "Triggers"
+      - "Database Design"
+      - "Query Optimization"
+    aliases:
+      sql: ["sql", "t-sql", "transact-sql"]
+      plsql: ["pl/sql", "plsql", "pl-sql", "oracle pl/sql", "plsql developer", "plsql engineer"]
+      oracle: ["oracle", "oracle db", "oracle database", "oracle sql"]
+      postgresql: ["postgresql", "postgres"]
+      mysql: ["mysql"]
+
+rules:
+  # R language strict restrictions
+  r_language:
+    disallowed_primary_titles:
+      - "R Developer"
+      - "R Programmer"
+      - "R Data Engineer"
+      - "R Data Analyst"
+      - "Data Analyst (R)"
+      - "Développeur R"
+      - "Analyste R"
+    disallowed_primary_patterns:
+      - "(?i)\\bR\\s+required\\b"
+      - "(?i)\\brequires?\\s+R\\b"
+      - "(?i)\\bexpert\\s+in\\s+R\\b"
+      - "(?i)\\bproficien(?:cy|t)\\s+in\\s+R\\b(?!.*python)"
+      - "(?i)\\bprimary\\s+language[:\\s]+R\\b"
+
+      - "(?i)\\bmust\\s+have[:\\s]+.*\\bR\\b"
+      - "(?i)\\bR\\s+programming\\s+required\\b"
+    optional_r_patterns:
+      - "(?i)\\bR\\s+(?:is\\s+)?(?:a\\s+)?(?:plus|bonus|nice\\s+to\\s+have|preferred|optional)\\b"
+      - "(?i)(?:plus|bonus|nice\\s+to\\s+have|preferred|optional)[:\\s]+.*\\bR\\b"
+      - "(?i)python.*(?:or|and)\\s+r\\s+(?:is\\s+)?(?:a\\s+)?plus\\b"
+      - "(?i)python\\s+(?:required|mandatory).*r.*(?:plus|preferred|bonus)"

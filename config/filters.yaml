@@ -1,0 +1,137 @@
+# Opportunity Filters Configuration
+junior_signals:
+  patterns:
+    - "(?i)\\bjunior\\b"
+    - "(?i)\\bjr\\b"
+    - "(?i)\\bentry[\\s-]level\\b"
+    - "(?i)\\bbeginner\\b"
+    - "(?i)\\bgraduate\\b"
+    - "(?i)\\bstudent\\b"
+    - "(?i)\\bintern(?:ship)?\\b"
+    - "(?i)\\bstage\\b"
+    - "(?i)\\bpfe\\b"
+    - "(?i)\\b0[-–]1\\s+years?\\b"
+    - "(?i)\\b0[-–]2\\s+years?\\b"
+    - "(?i)\\bless\\s+than\\s+2\\s+years?\\b"
+    - "(?i)\\bno\\s+experience\\s+required\\b"
+    - "(?i)\\bexperience\\s+preferred\\b"
+    - "(?i)\\bjunior[- ]friendly\\b"
+    - "(?i)\\bearly[- ]career\\b"
+    - "(?i)\\btraining\\s+provided\\b"
+
+senior_penalties:
+  patterns:
+    - "(?i)\\bsenior\\s+only\\b"
+    - "(?i)\\bsenior\\b(?!.*(?:junior|entry))"
+    - "(?i)\\blead\\b"
+    - "(?i)\\bprincipal\\b"
+    - "(?i)\\bstaff\\b"
+    - "(?i)\\bexpert\\s+only\\b"
+    - "(?i)\\b(?:10|8|7)\\+?\\s+years?\\s+(?:of\\s+)?experience\\b"
+    - "(?i)\\barchitect\\b"
+    - "(?i)\\bhead\\s+of\\b"
+    - "(?i)\\bdirector\\b"
+    - "(?i)\\bvp\\b"
+
+freelance_signals:
+  patterns:
+    - "(?i)\\bfreelance\\b"
+    - "(?i)\\bcontract\\b"
+    - "(?i)\\bfixed[\\s-]price\\b"
+    - "(?i)\\bproject[\\s-]based\\b"
+    - "(?i)\\bgig\\b"
+    - "(?i)\\bmission\\b"
+    - "(?i)\\bconsulting\\b"
+    - "(?i)\\bshort[\\s-]term\\b"
+    - "(?i)\\blong[\\s-]term\\s+contract\\b"
+    - "(?i)\\bremote\\s+freelance\\b"
+    - "(?i)\\bpart[\\s-]time\\s+remote\\b"
+    - "(?i)\\bindependent\\s+contractor\\b"
+
+remote_signals:
+  patterns:
+    - "(?i)\\bremote\\b"
+    - "(?i)\\bfully\\s+remote\\b"
+    - "(?i)\\bremote\\s+worldwide\\b"
+    - "(?i)\\bwork\\s+from\\s+anywhere\\b"
+    - "(?i)\\bdistributed\\b"
+    - "(?i)\\btélétravail\\b"
+    - "(?i)\\btelecommute\\b"
+    - "(?i)\\banywhere\\b"
+
+geographic_restrictions:
+  us_only:
+    - "(?i)\\bus\\s+only\\b"
+    - "(?i)\\bunited\\s+states\\s+only\\b"
+    - "(?i)\\bmust\\s+be\\s+located\\s+in\\s+the\\s+us\\b"
+    - "(?i)\\bus\\s+citizens?\\s+only\\b"
+  eu_only:
+    - "(?i)\\beu\\s+only\\b"
+    - "(?i)\\beurope\\s+only\\b"
+    - "(?i)\\bbased\\s+in\\s+europe\\b"
+  timezone:
+    - "(?i)\\best\\s+timezone\\b"
+    - "(?i)\\bpst\\s+timezone\\b"
+    - "(?i)\\bgmt[+-]\\d+\\b"
+    - "(?i)\\bcet\\s+timezone\\b"
+    - "(?i)\\beuropean\\s+time\\s+zone\\b"
+
+startup_sme_signals:
+  patterns:
+    - "(?i)\\bstartup\\b"
+    - "(?i)\\bearly[\\s-]stage\\b"
+    - "(?i)\\bseed\\b"
+    - "(?i)\\bseries[\\s-][ab]\\b"
+    - "(?i)\\bsmall\\s+company\\b"
+    - "(?i)\\bsme\\b"
+    - "(?i)\\bpme\\b"
+    - "(?i)\\bsoftware\\s+agency\\b"
+    - "(?i)\\bdigital\\s+agency\\b"
+    - "(?i)\\bsmall\\s+team\\b"
+    - "(?i)\\bboutique\\b"
+    - "(?i)\\bfounded\\s+in\\s+20(?:2[0-9]|1[89])\\b"
+
+# Real-time Freshness & Recency Filters
+freshness:
+  max_age_hours: 24             # Maximum allowed post age (older than 24h = expired/stale)
+  reject_expired: true          # Discard/ignore posts older than max_age_hours
+  realtime_window_hours: 2      # Window considered brand-new / ultra-fresh (< 2h)
+  realtime_bonus_points: 15     # Bonus score points for brand-new posts
+
+# Language Selection Filter
+language:
+  allowed_languages: ["en", "fr"]  # French and English only
+  reject_other_languages: true     # Disqualify non-French and non-English listings
+
+# Strict URL Live Validation & Quality Assurance
+url_validation:
+  validate_online: true            # Perform live HTTP reachability checks
+  timeout_seconds: 5.0             # Timeout for HEAD/GET reachability check
+  cache_ttl_seconds: 3600.0        # Cache duration for live URL checks
+  reject_invalid: true             # Discard items with dead (404/410) or broken URLs
+
+# Non-Tech Roles to Disqualify
+non_tech_signals:
+  patterns:
+    - "(?i)\\baccount\\s+executive\\b"
+    - "(?i)\\bsales\\b"
+    - "(?i)\\bmarketing\\b"
+    - "(?i)\\bbusiness\\s+development\\b"
+    - "(?i)\\brecruiter\\b"
+    - "(?i)\\btalent\\s+acquisition\\b"
+    - "(?i)\\bcustomer\\s+success\\b"
+    - "(?i)\\bhuman\\s+resources\\b"
+    - "(?i)\\bhr\\s+manager\\b"
+    - "(?i)\\baccountant\\b"
+    - "(?i)\\baccounting\\b"
+    - "(?i)\\bfinancial\\s+analyst\\b"
+    - "(?i)\\blegal\\b"
+    - "(?i)\\bcopywriter\\b"
+    - "(?i)\\bcommunity\\s+manager\\b"
+    - "(?i)\\bformer\\s+founder\\b"
+    - "(?i)\\barea\\s+vice\\s+president\\b"
+    - "(?i)\\benablement\\s+manager\\b"
+    - "(?i)\\bchief\\s+revenue\\s+officer\\b"
+    - "(?i)\\bcommercial\\b"
+
+

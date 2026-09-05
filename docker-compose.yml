@@ -1,0 +1,31 @@
+services:
+  hunter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ai-freelance-hunter:latest
+    container_name: ai-freelance-hunter
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./config:/app/config
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
+      - MIN_NOTIFICATION_SCORE=${MIN_NOTIFICATION_SCORE:-75}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "python", "src/healthcheck.py"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

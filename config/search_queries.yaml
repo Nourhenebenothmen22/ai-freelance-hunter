@@ -1,0 +1,107 @@
+# Dynamic Search Query Generator Configuration
+templates:
+  - "{level} {role} {work_type} {location}"
+  - "{tech} {role} {work_type}"
+  - "{role} {work_type} {location}"
+  - "{tech} {work_type}"
+
+dimensions:
+  level:
+    en:
+      - "Junior"
+      - "Entry Level"
+      - ""
+    fr:
+      - "Junior"
+      - "Débutant"
+      - ""
+
+  role:
+    en:
+      - "Full Stack Developer"
+      - "React Developer"
+      - "Next.js Developer"
+      - "Node.js Developer"
+      - "MERN Developer"
+      - "AI Engineer"
+      - "AI Developer"
+      - "RAG Developer"
+      - "RAG Engineer"
+      - "LLM Developer"
+      - "Chatbot Developer"
+      - "Conversational AI"
+      - "AI Agent Developer"
+      - "Full Stack AI Developer"
+      - "React AI Developer"
+      - "Next.js AI Developer"
+      - "Node.js AI Developer"
+      - "AI SaaS Developer"
+      - "Python Data Engineer"
+      - "Python Data Analyst"
+      - "Python ETL Developer"
+      - "SQL Developer"
+      - "PL/SQL Developer"
+      - "Oracle PL/SQL Developer"
+      - "Database Developer"
+    fr:
+      - "Développeur Full Stack"
+      - "Développeur React"
+      - "Développeur Node.js"
+      - "Développeur IA"
+      - "Ingénieur IA"
+      - "Développeur Chatbot"
+      - "Ingénieur Données Python"
+      - "Développeur SQL"
+      - "Développeur PL/SQL"
+
+  work_type:
+    en:
+      - "Freelance"
+      - "Remote"
+      - "Contract"
+      - "Freelance Remote"
+    fr:
+      - "Freelance"
+      - "Télétravail"
+      - "Remote"
+
+  location:
+    en:
+      - "Remote"
+      - "Worldwide"
+      - "Tunisia"
+      - "Europe"
+    fr:
+      - "Remote"
+      - "Tunisie"
+      - "France"
+
+predefined_high_priority_queries:
+  - "Junior React Developer Freelance Remote"
+  - "Junior Full Stack Developer Remote"
+  - "React Node.js Freelance"
+  - "Next.js Developer Remote"
+  - "MERN Developer Freelance"
+  - "AI Engineer Junior Remote"
+  - "AI Developer Freelance"
+  - "RAG Developer Remote"
+  - "RAG Engineer Freelance"
+  - "LLM Developer Remote"
+  - "Chatbot Developer Freelance"
+  - "Conversational AI Remote"
+  - "AI Agent Developer Freelance"
+  - "Full Stack AI Developer"
+  - "React AI Developer"
+  - "Next.js AI Developer"
+  - "Node.js AI Developer"
+  - "AI SaaS Developer"
+  - "Python Data Engineer Junior Remote"
+  - "Python Data Analyst Remote"
+  - "Python ETL Developer"
+  - "SQL Developer Junior Remote"
+  - "PL/SQL Developer Remote"
+  - "Oracle PL/SQL Developer"
+  - "Database Developer Junior Remote"
+  - "Stage PFE Full Stack React Node"
+  - "Stage PFE Intelligence Artificielle RAG"
+  - "Freelance React Développeur Télétravail"
