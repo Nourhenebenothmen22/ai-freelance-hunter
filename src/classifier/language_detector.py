@@ -5,6 +5,7 @@ job postings and tech opportunity descriptions.
 Detects:
 - 'en' (English)
 - 'fr' (French)
+- 'ar' (Arabic)
 - 'de' (German)
 - 'es' (Spanish)
 - 'it' (Italian)
@@ -78,6 +79,17 @@ class LanguageDetector:
         "lavoro", "azienda", "sviluppo", "sviluppatore", "esperienza", "requisiti"
     }
 
+    STOPWORDS_AR: Set[str] = {
+        "في", "من", "على", "إلى", "عن", "مع", "هذا", "هذه", "ذلك", "تلك", "كان",
+        "كانت", "يكون", "أن", "إن", "التي", "الذي", "الذين", "أو", "ثم", "حيث",
+        "كل", "ما", "لا", "لم", "لن", "قد", "تم", "بين", "حول", "خلال", "عند",
+        "حتى", "غير", "كما", "هو", "هي", "هم", "نحن", "أنا", "أنت", "مطلوب",
+        "مشروع", "مبرمج", "مطور", "تطبيق", "موقع", "خدمة", "برمجة", "تصميم",
+        "عمل", "أحتاج", "شركة", "وظيفة", "خبرة", "مهارات", "فريق", "صفحة",
+        "نظام", "بيانات", "منصة", "بناء", "تطوير", "تقنية", "إدارة", "عن", "بعد",
+        "حر", "مستقل", "مبتدئ", "متدرب", "دوام", "عقد", "ساعة", "ساعات", "إنجاز"
+    }
+
     @classmethod
     def tokenize(cls, text: str) -> List[str]:
         """Tokenize text into lowercased alpha words."""
@@ -89,7 +101,7 @@ class LanguageDetector:
     def detect_language(cls, title: str, description: Optional[str] = None) -> str:
         """
         Detect primary language of the opportunity text.
-        Returns: 'en', 'fr', 'de', 'es', 'it', or 'other'.
+        Returns: 'en', 'fr', 'ar', 'de', 'es', 'it', or 'other'.
         """
         combined_text = f"{title or ''} {description or ''}".strip()
         if not combined_text:
@@ -97,11 +109,14 @@ class LanguageDetector:
 
         tokens = cls.tokenize(combined_text)
         if not tokens:
+            if any('\u0600' <= c <= '\u06FF' for c in combined_text):
+                return "ar"
             return "en"
 
         # Count stopwords match
         score_en = sum(1 for t in tokens if t in cls.STOPWORDS_EN)
         score_fr = sum(1 for t in tokens if t in cls.STOPWORDS_FR)
+        score_ar = sum(1 for t in tokens if t in cls.STOPWORDS_AR)
         score_de = sum(1 for t in tokens if t in cls.STOPWORDS_DE)
         score_es = sum(1 for t in tokens if t in cls.STOPWORDS_ES)
         score_it = sum(1 for t in tokens if t in cls.STOPWORDS_IT)
@@ -115,9 +130,17 @@ class LanguageDetector:
         if any(c in lower_raw for c in "ñ¿¡"):
             score_es += 6
 
+        # Arabic script detection (Unicode range \u0600 - \u06FF)
+        ar_char_count = sum(1 for c in combined_text if '\u0600' <= c <= '\u06FF')
+        if ar_char_count >= 5:
+            score_ar += 5
+        if ar_char_count >= 20:
+            score_ar += 10
+
         scores = {
             "en": score_en,
             "fr": score_fr,
+            "ar": score_ar,
             "de": score_de,
             "es": score_es,
             "it": score_it
@@ -127,6 +150,8 @@ class LanguageDetector:
 
         # If zero or extremely sparse stopwords detected (e.g. 1-2 words total like "Fullstack React Developer")
         if max_score == 0:
+            if any('\u0600' <= c <= '\u06FF' for c in title):
+                return "ar"
             title_lower = title.lower()
             if any(w in title_lower for w in ["développeur", "ingénieur", "stage", "données", "concepteur"]):
                 return "fr"

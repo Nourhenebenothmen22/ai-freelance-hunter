@@ -27,6 +27,14 @@ class RuleDetector:
         r"\bearly[- ]career\b",
         r"\btraining\s+provided\b",
         r"\bdébutant\b",
+        r"مبتدئ",
+        r"مبتدئة",
+        r"حديث[\s-]التخرج",
+        r"تدريب",
+        r"متدرب",
+        r"متدربة",
+        r"بدون[\s-]خبرة",
+        r"خبرة[\s-]بسيطة",
     ]
 
     SENIOR_ONLY_PATTERNS = [
@@ -41,6 +49,11 @@ class RuleDetector:
         r"\bhead\s+of\b",
         r"\bdirector\b",
         r"\bvp\b",
+        r"خبير",
+        r"محترف[\s-]فقط",
+        r"سنيور",
+        r"خبرة[\s-]عالية",
+        r"(?:8|9|10)\+?\s+سنوات",
     ]
 
     NON_TECH_ROLE_PATTERNS = [
@@ -64,6 +77,20 @@ class RuleDetector:
         r"\benablement\s+manager\b",
         r"\bchief\s+revenue\s+officer\b",
         r"\bcommercial\b",
+        r"تسويق",
+        r"مبيعات",
+        r"خدمة[\s-]عملاء",
+        r"محاسب",
+        r"محاسبة",
+        r"موارد[\s-]بشرية",
+        r"كاتب[\s-]محتوى",
+        r"كتابة[\s-]مقالات",
+        r"مونتير",
+        r"مونتاج",
+        r"فيديو",
+        r"تصميم[\s-]شعار",
+        r"ترجمة",
+        r"تعليق[\s-]صوتي",
     ]
 
 
@@ -80,6 +107,13 @@ class RuleDetector:
         r"\bshort[\s-]term\b",
         r"\bpart[\s-]time\b",
         r"\bprestation\b",
+        r"عمل[\s-]حر",
+        r"مستقل",
+        r"مشروع",
+        r"خمسات",
+        r"فريلانس",
+        r"فريلانسر",
+        r"عقد[\s-]مؤقت",
     ]
 
     FREELANCE_DESC_PATTERNS = [
@@ -94,6 +128,13 @@ class RuleDetector:
         r"\bpart[\s-]time\s+remote\b",
         r"\bprestation\b",
         r"\bb2b\s+contract\b",
+        r"عمل[\s-]حر",
+        r"مستقل",
+        r"مشروع",
+        r"خمسات",
+        r"فريلانس",
+        r"فريلانسر",
+        r"عقد[\s-]مؤقت",
     ]
 
     REMOTE_PATTERNS = [
@@ -105,6 +146,10 @@ class RuleDetector:
         r"\btélétravail\b",
         r"\btelecommute\b",
         r"\banywhere\b",
+        r"عن[\s-]بُ?عد",
+        r"من[\s-]المنزل",
+        r"أونلاين",
+        r"عبر[\s-]الإنترنت",
     ]
 
     STARTUP_SME_PATTERNS = [
@@ -132,45 +177,47 @@ class RuleDetector:
     def detect_role(cls, title: str) -> Optional[str]:
         """Detect standardized role name from title."""
         t_low = title.lower()
-        if "full stack" in t_low or "fullstack" in t_low:
+        if "full stack" in t_low or "fullstack" in t_low or "فول ستاك" in t_low or "متكامل" in t_low:
             return "Full Stack Developer"
-        elif "react" in t_low:
+        elif "react" in t_low or "ريأكت" in t_low or "رياكت" in t_low:
             return "React Developer"
-        elif "next" in t_low:
+        elif "next" in t_low or "نكست" in t_low:
             return "Next.js Developer"
-        elif "node" in t_low:
+        elif "node" in t_low or "نود" in t_low:
             return "Node.js Developer"
-        elif "ai" in t_low or "artificial intelligence" in t_low or "machine learning" in t_low or "ml" in t_low:
+        elif "ai" in t_low or "artificial intelligence" in t_low or "machine learning" in t_low or "ml" in t_low or "ذكاء اصطناعي" in t_low or "تعلم آلي" in t_low:
             return "AI Engineer"
-        elif "rag" in t_low or "llm" in t_low or "chatbot" in t_low:
+        elif "rag" in t_low or "llm" in t_low or "chatbot" in t_low or "شات بوت" in t_low or "روبوت محادثة" in t_low:
             return "RAG / LLM Developer"
-        elif "data engineer" in t_low or "etl" in t_low:
+        elif "data engineer" in t_low or "etl" in t_low or "مهندس بيانات" in t_low:
             return "Python Data Engineer"
-        elif "data analyst" in t_low:
+        elif "data analyst" in t_low or "محلل بيانات" in t_low:
             return "Python Data Analyst"
         elif "pl/sql" in t_low or "plsql" in t_low or "pl-sql" in t_low:
-            if "engineer" in t_low or "ingénieur" in t_low:
+            if "engineer" in t_low or "ingénieur" in t_low or "مهندس" in t_low:
                 return "PL/SQL Engineer"
             return "PL/SQL Developer"
-        elif "oracle" in t_low:
-            if "engineer" in t_low or "ingénieur" in t_low:
+        elif "oracle" in t_low or "أوراكل" in t_low:
+            if "engineer" in t_low or "ingénieur" in t_low or "مهندس" in t_low:
                 return "Oracle Engineer"
             return "PL/SQL Developer"
-        elif "sql" in t_low:
-            if "engineer" in t_low or "ingénieur" in t_low:
+        elif "sql" in t_low or "قواعد بيانات" in t_low or "قاعدة بيانات" in t_low:
+            if "engineer" in t_low or "ingénieur" in t_low or "مهندس" in t_low:
                 return "SQL Engineer"
             return "SQL Developer"
         elif "database" in t_low:
-            if "engineer" in t_low or "ingénieur" in t_low:
+            if "engineer" in t_low or "ingénieur" in t_low or "مهندس" in t_low:
                 return "Database Engineer"
             return "Database Developer"
 
-        elif "frontend" in t_low or "front-end" in t_low:
+        elif "frontend" in t_low or "front-end" in t_low or "واجهات" in t_low:
             return "Frontend Developer"
-        elif "backend" in t_low or "back-end" in t_low:
+        elif "backend" in t_low or "back-end" in t_low or "خلفية" in t_low:
             return "Backend Developer"
-        elif "web" in t_low:
+        elif "web" in t_low or "ويب" in t_low or "موقع" in t_low:
             return "Web Developer"
+        elif "مطور" in t_low or "مبرمج" in t_low:
+            return "Software Developer"
         return "Software Developer"
 
     @classmethod

@@ -15,9 +15,9 @@ class TechDetector:
 
     TECH_PATTERNS = {
         # Web
-        "React": [r"\breact(?:\.js|js)?\b"],
-        "Next.js": [r"\bnext(?:\.js|js)?\b"],
-        "Node.js": [r"\bnode(?:\.js|js)?\b"],
+        "React": [r"\breact(?:\.js|js)?\b", r"ريأكت", r"رياكت"],
+        "Next.js": [r"\bnext(?:\.js|js)?\b", r"نكست"],
+        "Node.js": [r"\bnode(?:\.js|js)?\b", r"نود"],
         "Express": [r"\bexpress(?:\.js|js)?\b"],
         "JavaScript": [r"\bjavascript\b", r"\bjs\b"],
         "TypeScript": [r"\btypescript\b", r"\bts\b"],
@@ -35,30 +35,30 @@ class TechDetector:
         "LlamaIndex": [r"\bllamaindex\b", r"\bllama-index\b"],
         "OpenAI": [r"\bopenai\b", r"\bgpt[- ]?[34o]\b"],
         "Hugging Face": [r"\bhugging\s*face\b"],
-        "AI Agent": [r"\bai\s+agents?\b", r"\bautonomous\s+agents?\b"],
-        "Chatbot": [r"\bchatbot(?:s)?\b", r"\bconversational\s+ai\b"],
+        "AI Agent": [r"\bai\s+agents?\b", r"\bautonomous\s+agents?\b", r"وكيل\s+ذكاء\s+اصطناعي", r"وكلاء\s+الذكاء\s+الاصطناعي"],
+        "Chatbot": [r"\bchatbot(?:s)?\b", r"\bconversational\s+ai\b", r"شات\s*بوت", r"روبوت\s+محادثة"],
         "Vector DB": [r"\b(?:chromadb|pinecone|qdrant|weaviate|milvus|pgvector)\b"],
-        "Generative AI": [r"\bgenerative\s+ai\b", r"\bgenai\b"],
-        "Machine Learning": [r"\bmachine\s+learning\b", r"\bml\b"],
-        "NLP": [r"\bnlp\b", r"\bnatural\s+language\s+processing\b"],
+        "Generative AI": [r"\bgenerative\s+ai\b", r"\bgenai\b", r"ذكاء\s+اصطناعي\s+توليدي"],
+        "Machine Learning": [r"\bmachine\s+learning\b", r"\bml\b", r"تعلم\s+الآلة", r"تعلم\s+آلي"],
+        "NLP": [r"\bnlp\b", r"\bnatural\s+language\s+processing\b", r"معالجة\s+اللغات\s+الطبيعية"],
 
         # Data / Python
-        "Python": [r"\bpython(?:3)?\b"],
+        "Python": [r"\bpython(?:3)?\b", r"بايثون"],
         "Pandas": [r"\bpandas\b"],
         "NumPy": [r"\bnumpy\b"],
         "PySpark": [r"\bpyspark\b", r"\bapache\s+spark\b"],
         "Airflow": [r"\bairflow\b"],
         "FastAPI": [r"\bfastapi\b"],
         "Flask": [r"\bflask\b"],
-        "ETL": [r"\betl\b", r"\bdata\s+pipelines?\b", r"\bdata\s+engineering\b", r"\bdata\s+analyst\b"],
+        "ETL": [r"\betl\b", r"\bdata\s+pipelines?\b", r"\bdata\s+engineering\b", r"\bdata\s+analyst\b", r"مهندس\s+بيانات", r"محلل\s+بيانات"],
 
         # SQL / Database
-        "SQL": [r"\bsql\b", r"\bt-sql\b", r"\btransact-sql\b"],
-        "PL/SQL": [r"\bpl[\s/]?sql\b", r"\bpl-sql\b", r"\boracle\s+pl[\s/]?sql\b"],
-        "Oracle": [r"\boracle(?:\s+database|\s+db)?\b", r"\boracle\s+sql\b"],
+        "SQL": [r"\bsql\b", r"\bt-sql\b", r"\btransact-sql\b", r"قواعد\s+بيانات", r"قاعدة\s+بيانات"],
+        "PL/SQL": [r"\bpl[\s/]?sql\b", r"\bpl-sql\b", r"\boracle\s+pl[\s/]?sql\b", r"بي\s*إل\s*إس\s*كيو\s*إل"],
+        "Oracle": [r"\boracle(?:\s+database|\s+db)?\b", r"\boracle\s+sql\b", r"أوراكل"],
         "PostgreSQL": [r"\bpostgres(?:ql)?\b"],
         "MySQL": [r"\bmysql\b"],
-        "Stored Procedures": [r"\bstored\s+procedures?\b", r"\btriggers?\b", r"\bprocedures?\s+stockées?\b"],
+        "Stored Procedures": [r"\bstored\s+procedures?\b", r"\btriggers?\b", r"\bprocedures?\s+stockées?\b", r"إجراءات\s+مخزنة"],
     }
 
     R_PRIMARY_PATTERNS = [

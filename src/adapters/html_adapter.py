@@ -58,13 +58,17 @@ class HTMLScraperAdapter(BaseSourceAdapter):
     def normalize(self, raw_item: Dict[str, Any]) -> Dict[str, Any]:
         """Normalize extracted HTML item."""
         title = raw_item.get("title", "")
+        desc = raw_item.get("description", "")
+        is_freelance = self.source_config.get("freelance", True) or bool(
+            re.search(r"\b(?:freelance|contract|مستقل|عمل حر|مشروع)\b", f"{title} {desc}", re.I)
+        )
         return {
             "title": title,
-            "description": raw_item.get("description", ""),
+            "description": desc,
             "source": self.source_id,
             "source_url": raw_item.get("url", ""),
             "canonical_url": raw_item.get("url", ""),
             "company": raw_item.get("company"),
             "remote": True,
-            "freelance": bool(re.search(r"\b(?:freelance|contract)\b", title, re.I)),
+            "freelance": is_freelance,
         }
