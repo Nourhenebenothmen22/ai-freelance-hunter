@@ -90,3 +90,53 @@ def test_classification_engine_accepts_french_job():
     assert opp.language == "fr"
     assert opp.score >= 60
     assert opp.status == "scored"
+
+
+def test_arabic_language_detection():
+    """Verify Arabic opportunity descriptions are correctly detected."""
+    title = "مطلوب مبرمج رياكت وبايثون لبناء منصة ويب"
+    desc = "مشروع عمل حر لتطوير تطبيق ويب متكامل بالاعتماد على بايثون وقواعد البيانات. العمل عن بعد ومتاح للمبتدئين."
+    lang = LanguageDetector.detect_language(title, desc)
+    assert lang == "ar"
+    assert LanguageDetector.is_allowed(lang, ["en", "fr", "ar"]) is True
+    assert LanguageDetector.is_allowed(lang, ["en", "fr"]) is False
+
+
+def test_classification_engine_accepts_arabic_tech_job():
+    """Verify ClassificationEngine scores and accepts Arabic tech opportunities when 'ar' is allowed."""
+    engine = ClassificationEngine()
+    arabic_raw = {
+        "title": "مطلوب مبرمج رياكت وبايثون عن بعد",
+        "description": "نبحث عن مبرمج فريلانس مبتدئ أو حديث التخرج للعمل عن بعد على تطوير واجهة React و Backend Python.",
+        "company": "منصة خمسات",
+        "source": "khamsat_requests",
+        "source_url": "https://khamsat.com/community/requests/123456",
+        "remote": True,
+        "freelance": True
+    }
+    opp = engine.process_raw_opportunity(arabic_raw)
+    assert opp.language == "ar"
+    assert opp.score >= 75
+    assert opp.status == "scored"
+    assert opp.junior_signal is True
+    assert opp.remote is True
+    assert opp.freelance is True
+
+
+def test_classification_engine_disqualifies_arabic_non_tech_job():
+    """Verify ClassificationEngine disqualifies non-tech Arabic posts (e.g. content writing, video editing)."""
+    engine = ClassificationEngine()
+    non_tech_raw = {
+        "title": "مطلوب كاتب محتوى ومونتير فيديو إعلاني احترافي",
+        "description": "أحتاج مونتير فيديو محترف وتصميم إعلانات سوشيال ميديا وكتابة مقالات تسويقية.",
+        "company": "متجر إلكتروني",
+        "source": "khamsat_requests",
+        "source_url": "https://khamsat.com/community/requests/99999",
+        "remote": True,
+        "freelance": True
+    }
+    opp = engine.process_raw_opportunity(non_tech_raw)
+    assert opp.language == "ar"
+    assert opp.score == 0
+    assert opp.status == "disqualified"
+
