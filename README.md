@@ -12,7 +12,7 @@
 [![HTTPX](https://img.shields.io/badge/HTTPX-Async%20Scraping-5A5A5A?style=for-the-badge&logo=fastapi&logoColor=white)](https://www.python-httpx.org/)
 [![BeautifulSoup](https://img.shields.io/badge/BeautifulSoup4-HTML%20Parsing-339933?style=for-the-badge)](https://www.crummy.com/software/BeautifulSoup/)
 [![Pydantic](https://img.shields.io/badge/Pydantic-v2%20Schemas-E92063?style=for-the-badge&logo=pydantic&logoColor=white)](https://docs.pydantic.dev/)
-[![Tests](https://img.shields.io/badge/Tests-62%2F62%20Passed%20(100%25)-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](#-tests--qualit%C3%A9-du-code)
+[![Tests](https://img.shields.io/badge/Tests-65%2F65%20Passed%20(100%25)-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](#-tests--qualit%C3%A9-du-code)
 [![License](https://img.shields.io/badge/License-FOSS%20Open--Source-orange?style=for-the-badge)](LICENSE)
 
 <br/>
@@ -31,12 +31,12 @@ Vous cherchez votre **premier emploi**, votre **stage PFE**, ou vos **premières
 
 👉 **AI-Freelance-Hunter fait tout le travail à votre place en automatique !**
 
-1. **Il scrute le web 24h/24** : Groupes Facebook de freelance en Tunisie, plateformes internationales (RemoteOK, Jobicy, Remotive, Hacker News) et recherche web en direct.
+1. **Il scrute le web 24h/24** : Groupes Facebook de freelance en Tunisie, plateformes arabes (Khamsat, Mostaql), plateformes internationales (RemoteOK, Jobicy, Remotive, Hacker News) et recherche web en direct.
 2. **Il filtre avec intelligence** :
    - 🚫 **Élimine les vieilles offres** (plus de 24h).
    - 🚫 **Élimine les liens morts** (vérification automatique 404 en direct).
-   - 🚫 **Élimine les langues inconnues** (accepte **uniquement** le Français et l'Anglais).
-   - 🚫 **Élimine les postes non-techniques** (pas de vente, pas de marketing, pas de RH).
+   - 🌍 **Support Trilingue Déterministe** : Accepte le **Français**, l'**Anglais** et l'**Arabe** (élimine l'allemand, l'espagnol, etc.).
+   - 🚫 **Élimine les postes non-techniques** (pas de vente, pas de marketing, pas de montage vidéo, pas de RH).
    - 🚫 **Élimine le langage R** (focus 100% sur **Python** pour la Data).
 3. **Il vous envoie une notification Telegram en moins de 2 minutes** avec le lien direct pour postuler et les contacts du client (Téléphone, WhatsApp, Email).
 
@@ -160,18 +160,21 @@ Le système est configuré pour détecter en priorité les profils adaptés aux 
 
 AI-Freelance-Hunter interroge plusieurs canaux complémentaires pour ne rater aucune annonce :
 
-1. **Recherche Web Ouverte (Google News / RSS Search)** :
-   * Requêtes dynamiques en temps réel sur la Tunisie et le télétravail international (`freelance developpeur react tunisie`, `stage pfe full stack`, `junior pl/sql developer remote`, `python data analyst remote`).
-2. **APIs Publiques Internationales** :
+1. **Plateformes Arabes de Freelance (Sans Hardcoding)** :
+   * **Khamsat Community Requests** (`khamsat.com/community/requests`) : Demandes de services et projets en direct.
+   * **Mostaql Freelance Projects** (`mostaql.com/projects`) : Projets tech et missions de développement web, data et IA.
+2. **Recherche Web Ouverte (Google News / RSS Search)** :
+   * Requêtes dynamiques en temps réel sur la Tunisie, le monde arabe et le télétravail international (`freelance developpeur react tunisie`, `stage pfe full stack`, `مطور ريأكت عمل حر عن بعد`, `junior pl/sql developer remote`, `python data analyst remote`).
+3. **APIs Publiques Internationales** :
    * **Jobicy API** : Offres de télétravail international (`jobicy.com/api/v2/remote-jobs`).
    * **RemoteOK API** : Offres tech internationales vérifiées.
    * **Remotive API** : Emplois tech mondiaux en direct.
    * **Arbeitnow API** : Offres tech avec support visa et remote.
-3. **Flux RSS Spécialisés Télétravail** :
+4. **Flux RSS Spécialisés Télétravail** :
    * **WeWorkRemotely** (WWR) : Les meilleures offres de programmation à distance.
    * **Jobspresso** : Offres sélectionnées et vérifiées.
    * **Hacker News (Who is Hiring)** : Les startups de la Silicon Valley qui recrutent en freelance.
-4. **Groupes Publics Facebook Tunisie** :
+5. **Groupes Publics Facebook Tunisie** :
    * Groupes de freelances IT et développeurs web/mobile en Tunisie.
    * **Extraction directe** des numéros de téléphone (+216), liens WhatsApp et emails pour contacter le client en direct sans intermédiaire !
 
@@ -183,9 +186,9 @@ Pour éviter de vous faire perdre du temps avec des offres inutiles :
 
 | Filtre | Règle appliquée | Pourquoi c'est important |
 |---|---|---|
-| **1. Filtre de Langue** | **Français et Anglais uniquement**. | Toute offre rédigée en allemand, espagnol ou autre est rejetée (`Score = 0`). |
+| **1. Filtre Trilingue Déterministe** | **Français, Anglais et Arabe**. | Toute offre rédigée en allemand, espagnol ou autre est rejetée (`Score = 0`). |
 | **2. Vérification d'URL en Direct** | **Test HTTP HEAD/GET asynchrone**. | Élimine les liens 404, pages supprimées et liens cassés avant l'envoi de l'alerte. |
-| **3. Rejet des Postes Non-Tech** | **Élimination commerciale et RH**. | Rejette les postes de commerciaux, vendeurs, RH ou comptables (`Score = 0`). |
+| **3. Rejet des Postes Non-Tech** | **Élimination commerciale, marketing, montage vidéo**. | Rejette les postes de commerciaux, vendeurs, monteurs vidéo, RH ou comptables (`Score = 0`). |
 | **4. Fraîcheur < 24 Heures** | **Rejet des offres dépassées**. | Toute offre publiée il y a plus de 24h reçoit une pénalité de -60 points (pas d'alerte). |
 | **5. Bonus Ultra-Frais (< 2h)** | **+15 points en temps réel**. | Les offres postées il y a quelques minutes montent en haut de la file d'attente. |
 

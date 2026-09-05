@@ -186,8 +186,62 @@ sources:
       - "python data analyst junior remote"
       - "developpeur pl/sql oracle tunisie"
       - "data engineer python sql junior freelance"
+      - "مطور ريأكت عمل حر عن بعد"
+      - "مبرمج بايثون فريلانس عن بعد"
+      - "مطور قواعد بيانات أوراكل freelance"
+      - "مهندس ذكاء اصطناعي عمل حر"
+      - "مطور full stack junior remote freelance"
     rate_limit:
+      requests_per_minute: 15
+      delay_between_requests_seconds: 4
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
 
+  - source: "khamsat_requests"
+    name: "Khamsat Community Requests"
+    url: "https://khamsat.com/community/requests"
+    type: "html"
+    enabled: true
+    priority: 1
+    adapter: "html_adapter"
+    search_strategy: "html_cards"
+    freelance: true
+    selectors:
+      card: "tr.forum_post"
+      title: "h3.details-head a"
+      link: "h3.details-head a"
+      company: "a.user"
+      description: "h3.details-head a"
+    rate_limit:
+      requests_per_minute: 15
+      delay_between_requests_seconds: 4
+    pagination:
+      supported: false
+      max_pages: 1
+    health: "unknown"
+    last_success: null
+    last_failure: null
+
+  - source: "mostaql_projects"
+    name: "Mostaql Freelance Projects"
+    url: "https://mostaql.com/projects"
+    type: "html"
+    enabled: true
+    priority: 1
+    adapter: "html_adapter"
+    search_strategy: "html_cards"
+    freelance: true
+    selectors:
+      card: "tr.project-row"
+      title: "div.card--title h2 a"
+      link: "div.card--title h2 a"
+      company: "a.user-card"
+      description: "div.card--title h2 a"
+    rate_limit:
       requests_per_minute: 15
       delay_between_requests_seconds: 4
     pagination:

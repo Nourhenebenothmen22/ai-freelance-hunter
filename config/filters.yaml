@@ -100,8 +100,8 @@ freshness:
 
 # Language Selection Filter
 language:
-  allowed_languages: ["en", "fr"]  # French and English only
-  reject_other_languages: true     # Disqualify non-French and non-English listings
+  allowed_languages: ["en", "fr", "ar"]  # English, French, and Arabic
+  reject_other_languages: true           # Disqualify other language listings
 
 # Strict URL Live Validation & Quality Assurance
 url_validation:
